@@ -55,7 +55,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // Task to send
     let send_socket = Arc::clone(&socket);
     tokio::spawn(async move {
-        let output_addr = SocketAddr::new(MULTICAST_ADDR.into(), send_port);
+        let output_addr = SocketAddr::new(multicast_addr.ip(), send_port);
         loop {
             tokio::time::sleep(Duration::from_secs(5)).await;
             send_socket
